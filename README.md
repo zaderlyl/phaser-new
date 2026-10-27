@@ -5,7 +5,7 @@ Script shell qui génère la base d'un jeu Phaser 3 en JavaScript vanilla (sans 
 ## Utilisation
 
 ```bash
-./phaser-new.sh mon-jeu
+./shell/phaser-new.sh mon-jeu
 ```
 
 Le dossier `mon-jeu` est créé dans le répertoire courant. Le script refuse de continuer si ce dossier existe déjà. Il ne touche pas à git.
@@ -46,7 +46,7 @@ Puis ouvrir http://localhost:3000. Live Server (VS Code) fonctionne aussi.
 Ajouter un alias dans `~/.zshrc` :
 
 ```bash
-echo "alias phaser-new='/Users/liliancornet/Documents/GitHub/phaser-new/phaser-new.sh'" >> ~/.zshrc
+echo "alias phaser-new='/Users/liliancornet/Documents/GitHub/phaser-new/shell/phaser-new.sh'" >> ~/.zshrc
 ```
 
 Puis recharger le terminal :
