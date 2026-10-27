@@ -191,4 +191,67 @@ cat > "$NOM/.gitignore" <<'EOF'
 node_modules/
 EOF
 
+sed "s/__NOM__/$NOM/g" > "$NOM/README.md" <<'EOF'
+# __NOM__
+
+Jeu Phaser 3 en JavaScript vanilla (sans outil de build).
+
+## Lancer le jeu
+
+```bash
+npx serve
+```
+
+Puis ouvrir http://localhost:3000.
+
+Alternative : clic droit sur `index.html` dans VS Code, puis « Open with Live Server » (extension Live Server).
+
+Un serveur local est obligatoire : ouvrir `index.html` directement dans le navigateur bloque les modules JS et le chargement des assets.
+
+## Structure
+
+```
+index.html          page qui charge Phaser (CDN) et src/main.js
+src/
+  main.js           configuration Phaser et liste des scènes
+  config.js         constantes du jeu (taille, vitesse...)
+  scenes/           une classe par scène (Boot, Preload, Menu, Game)
+  entities/         objets du jeu (Player...)
+  managers/         logique transversale (InputManager...)
+assets/             sprites, audio, maps
+```
+
+## Ajouter une scène
+
+1. Créer `src/scenes/MaScene.js` sur le modèle de `MenuScene.js`.
+2. L'importer dans `src/main.js` et l'ajouter à la liste `scene`.
+3. La lancer avec `this.scene.start('MaScene')`.
+EOF
+
+sed "s/__NOM__/$NOM/g" > "$NOM/CLAUDE.md" <<'EOF'
+# __NOM__
+
+Jeu Phaser 3 en JavaScript vanilla, sans outil de build.
+
+## Lancer le projet
+```bash
+npx serve
+```
+URL : http://localhost:3000
+
+## Structure
+```
+index.html  charge Phaser (CDN) et src/main.js
+src/        code source (scenes/, entities/, managers/, config.js, main.js)
+assets/     sprites, audio, maps
+README.md
+```
+
+## Conventions
+- Une classe par fichier, nom du fichier = nom de la classe (PascalCase), commentaires en français.
+- Constantes du jeu dans src/config.js.
+- Chaque scène est enregistrée dans src/main.js.
+- Garder cette même organisation sur tous mes projets.
+EOF
+
 echo "Projet « $NOM » créé."
