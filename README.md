@@ -1,23 +1,33 @@
-# phaser-new
+# create-phaser-base
 
-Script shell qui génère la base d'un jeu Phaser 3 en JavaScript vanilla (sans Vite ni outil de build).
+Génère en une commande la base d'un jeu Phaser 3 en JavaScript, sans Vite ni outil de build. Il suffit d'avoir [Node.js](https://nodejs.org) (version 18 ou plus).
 
-## Utilisation
+## Créer un jeu
 
 ```bash
-./shell/phaser-new.sh mon-jeu
+npm create phaser-base@latest mon-jeu
 ```
 
-Le dossier `mon-jeu` est créé dans le répertoire courant. Le script refuse de continuer si ce dossier existe déjà. Il ne touche pas à git.
+Sans nom, la commande le demande. Le nom ne peut contenir que des lettres, des chiffres, `-` et `_`.
+
+Puis :
+
+```bash
+cd mon-jeu
+npx serve
+```
+
+Et ouvrir http://localhost:3000.
 
 ## Ce qui est généré
 
 ```
 mon-jeu/
-├── index.html          charge Phaser (CDN) et src/main.js
+├── index.html          charge Phaser (libs/) et src/main.js
 ├── README.md
-├── CLAUDE.md
 ├── .gitignore
+├── libs/
+│   └── phaser.min.js   Phaser 3.90.0, le jeu marche hors ligne
 ├── assets/
 │   ├── sprites/
 │   ├── audio/
@@ -30,33 +40,36 @@ mon-jeu/
     └── managers/       InputManager.js
 ```
 
-Le jeu généré est une démo jouable : un menu, puis un carré déplaçable aux flèches (physique Arcade).
+Le jeu généré est une démo jouable : un menu, puis un carré déplaçable aux flèches (physique Arcade). Son propre `README.md` explique comment le modifier.
 
-## Lancer le jeu généré
+## Version shell
+
+L'ancienne version, un script bash qui ne marche que sur Mac et Linux, est conservée dans `shell/phaser-new.sh`.
 
 ```bash
-cd mon-jeu
-npx serve
+./shell/phaser-new.sh mon-jeu
 ```
 
-Puis ouvrir http://localhost:3000. Live Server (VS Code) fonctionne aussi.
+Différences avec la version npm : Phaser est chargé par CDN (internet obligatoire), le nom du jeu n'apparaît pas dans le menu, et un `CLAUDE.md` est généré.
 
-## Installer la commande `phaser-new`
-
-Ajouter un alias dans `~/.zshrc` :
+Pour l'utiliser partout sur sa machine, ajouter un alias dans `~/.zshrc` :
 
 ```bash
 echo "alias phaser-new='/Users/liliancornet/Documents/GitHub/phaser-new/shell/phaser-new.sh'" >> ~/.zshrc
 ```
 
-Puis recharger le terminal :
-
 ```bash
 source ~/.zshrc
 ```
 
-Ensuite, depuis n'importe quel dossier :
+## Développement
+
+Tester le générateur sans le publier :
 
 ```bash
-phaser-new mon-jeu
+node bin/index.js mon-jeu-test
 ```
+
+Le modèle du jeu est dans `templates/`, en vrais fichiers. `__NOM__` y est remplacé par le nom du jeu. Le fichier `_gitignore` est renommé en `.gitignore` à la génération (npm supprime les `.gitignore` à la publication).
+
+Changer la version de Phaser : remplacer `templates/libs/phaser.min.js`, puis augmenter la version dans `package.json` avant de republier.
