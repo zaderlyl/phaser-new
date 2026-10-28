@@ -10,6 +10,7 @@
     "bin",
     "templates"
   ],
+  "license": "MIT",
   "engines": {
     "node": ">=18"
   },
