@@ -1,0 +1,28 @@
+{
+  "name": "create-phaser-base",
+  "version": "0.1.0",
+  "description": "Génère la base d'un jeu Phaser 3 en JavaScript, sans outil de build",
+  "type": "module",
+  "bin": {
+    "create-phaser-base": "bin/index.js"
+  },
+  "files": [
+    "bin",
+    "templates"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zaderlyl/phaser-new.git"
+  },
+  "keywords": [
+    "phaser",
+    "phaser3",
+    "game",
+    "create",
+    "template"
+  ]
+}
